@@ -7,6 +7,7 @@ class Cannon {
   Paint cannonPaint;
   double centerX;
   double centerY;
+  int hp = 100;
   var player;
 
   Cannon(this.game, double x, double y, p) {

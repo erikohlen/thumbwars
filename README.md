@@ -1,4 +1,4 @@
-# langaw
+# Thumb Wars
 
 A new Flutter project.
 

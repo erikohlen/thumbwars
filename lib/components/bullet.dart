@@ -7,19 +7,19 @@ class Bullet {
   Paint bulletPaint;
   bool isFlying = true;
   bool isOffScreen = false;
+  bool isExploding = false;
   var player;
 
   Bullet(this.game, double x, double y, p) {
     player = p;
     print("Player is: $player");
     double bulletWidth = game.tileSize;
-    double bulletHeight = game.tileSize;
     double exitposition = x - (bulletWidth / 2);
-    bulletRect = Rect.fromLTWH(exitposition, y, game.tileSize , game.tileSize );
+    bulletRect = Rect.fromLTWH(exitposition, y, game.tileSize, game.tileSize);
     bulletPaint = Paint();
-    player == 'bottom'
-        ? bulletPaint.color = Color(0xff6ab40c)
-        : bulletPaint.color = Color(0xffff4757);
+    player == 'top'?
+         bulletPaint.color = Color(0xffff4757)
+        : bulletPaint.color = Color(0xff6ab40c);
   }
 
   void render(Canvas c) {
@@ -28,15 +28,14 @@ class Bullet {
 
   void update(double t) {
     if (isFlying) {
-
-      player == 'bottom'
-          ? bulletRect = bulletRect.translate(0, game.tileSize * -20 * t)
-          : bulletRect = bulletRect.translate(0, game.tileSize * 20 * t);
-
+      player == 'top'
+          ? bulletRect = bulletRect.translate(0, game.tileSize * 20 * t)
+          : bulletRect = bulletRect.translate(0, game.tileSize * -20 * t);
     }
-    if (bulletRect.top > game.screenSize.height) {
+    if (bulletRect.top > game.screenSize.height || bulletRect.bottom <0) {
       isOffScreen = true;
     }
+
   }
 
   void onTapDown() {
