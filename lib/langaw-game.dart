@@ -52,6 +52,7 @@ class LangawGame extends Game {
     canvas.drawRect(bgRect, bgPaint);
     bullets.forEach((Bullet bullet) => bullet.render(canvas));
     cannons.forEach((Cannon cannon) => cannon.render(canvas));
+
   }
 
   void update(double t) {
